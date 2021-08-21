@@ -1,0 +1,100 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-08-21T04:46:54.711Z",
+    "end": "2021-08-21T04:47:45.411Z",
+    "duration": 50700,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "dcd471fe-4adc-4595-9227-4c5e945e8426",
+      "title": "",
+      "fullFile": "cypress/integration/FrameworkTest/ShoppingTest.js",
+      "file": "cypress/integration/FrameworkTest/ShoppingTest.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ea1627e3-55dc-45a8-b4da-065617a5d197",
+          "title": "This is my Shopping Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Shopping Test",
+              "fullTitle": "This is my Shopping Test Shopping Test",
+              "timedOut": null,
+              "duration": 46196,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const loginPage = new _LoginPage.default();\nconst homePage = new _HomePage.default();\nconst shoppingPage = new _ShoppingPage.default();\nloginPage.clickLogin().click();\nloginPage.verifyEmailTextBox().type(testdata.email);\nloginPage.password().type(testdata.password);\nloginPage.submitButton().click(); // //verify title of the page\ncy.title().should('eq', 'nopCommerce demo store'); //verify the default value select in drop down on top left is US dollar\ncy.get('select#customerCurrency option:selected').should('have.text', 'US Dollar'); //verify the alert\nhomePage.clickOnSearch().click();\ncy.on('window:alert', str => {\n  expect(str).to.equal('Please enter some search keyword');\n}); // click on add to Cart\nhomePage.verifySearchBox().type(testdata.searchProduct);\nhomePage.clickOnSearch().click();\ntestdata.productName.forEach(function (element) {\n  cy.selectProduct(element);\n}); //verify the message that product is added to cart\nshoppingPage.validateCartMessage().then(function (element) {\n  const ele = element.text();\n  expect(ele.includes('The product has been added to your shopping cart')).to.be.true; // this returns true\n}); //verify there shopping cart is a link\nshoppingPage.validateCartLink().should('have.attr', 'href', '/cart');\nshoppingPage.validateCartLink().click(); //verify its on the shopping cart page\ncy.url().should('eq', 'https://demo.nopcommerce.com/cart');\nvar sum = parseInt(0);\nshoppingPage.prodAmount().each((e1, index, $list) => {\n  const amount = e1.text();\n  var res = amount.split(\"$\");\n  res = parseFloat(res[1].trim());\n  cy.log(\"The total is \" + res);\n  sum += Number(res);\n  cy.log(\"The newest total is \" + sum);\n}).then(function () {\n  cy.log(sum);\n});\ncy.get('.cart-total-right span strong').then(function (element) {\n  const total = element.text();\n  cy.log(\" the total new is \" + total);\n  var res = total.split(\"$\");\n  var totalAmount = res[1].trim();\n  cy.log(\"The final amount is\" + totalAmount); //   expect(totalAmount).to.be.equal(sum)\n}); ///Static dropdown\ncy.get('select#checkout_attribute_1').select('Yes [+$10.00]').should('have.value', '2').and('to.be'); // element is visible\ncy.get('.button-2.continue-shopping-button').should('be.visible');\nshoppingPage.acceptCheckBox().click();\nshoppingPage.checkoutButton().click();\ncy.get('select#BillingNewAddress_CountryId').select('India').should('have.value', '133');\nshoppingPage.enterCity().type(testdata.city);\nshoppingPage.enterAddress().type(testdata.address);\nshoppingPage.enterzipCode().type(testdata.pinCode);\nshoppingPage.enterPhoneNumber().type(testdata.phoneNumber);\nshoppingPage.clickOnContinueOnAddress().click();\nshoppingPage.clickOnContinueOnShipping().click();\nshoppingPage.clickOnContinueOnPayment().click();\nshoppingPage.clickOnContinueOnConfirmatiOnPayment().click(); //   shoppingPage.clickOnBack().click()\n//    cy.url().should('eq','https://demo.nopcommerce.com/onepagecheckout#opc-payment_method')\n//    shoppingPage.clickOnContinueOnPayment().click()\n//    shoppingPage.clickOnContinueOnConfirmatiOnPayment().click()\nshoppingPage.clickOnConfirm().click();\nshoppingPage.confirmTopMessage().should('have.text', 'Thank you');\nshoppingPage.confirmBottomMessage().should('have.text', 'Your order has been successfully processed!'); //then(function(str){\n//        topMessage=str.text()\n//        cy.log(topMessage)\n//     expect(topMessage).to.equal('Thank You');\n// }\n//    )\nlet orderNumber;\ncy.get('.order-number').find('strong').then(str => {\n  var temp = str.text();\n  cy.log(temp);\n  orderNumber = temp.split(\" \");\n  orderNumber = orderNumber[2];\n  cy.log(orderNumber);\n});\ncy.get('.my-account > .list > :nth-child(2) > a').click();\ncy.get('.list:nth-child(1) li:nth-child(3)').click({\n  force: true\n});\ncy.wait(2000);\ncy.get('.order-list div.title strong').should($strong => {\n  expect($strong.eq(0)).to.contain(orderNumber);\n});\ncy.get('.ico-account').click();\nshoppingPage.clickOnAddress().click();\nshoppingPage.deleteAddress().click();",
+              "err": {},
+              "uuid": "cd99b6f6-6d9b-4b5a-a2a7-3ca957bcbd46",
+              "parentUUID": "ea1627e3-55dc-45a8-b4da-065617a5d197",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "cd99b6f6-6d9b-4b5a-a2a7-3ca957bcbd46"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 46196,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": null,
+      "version": "5.2.0"
+    }
+  }
+}

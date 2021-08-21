@@ -1,0 +1,17 @@
+{
+  "name": "Using fixtures to represent data",
+  "email": "tahera.firdose242017@gmail.com",
+  "password": "Test@12345",
+  "gender": "Female",
+  "productName": [
+    "Apple MacBook Pro 13-inch",
+    "Samsung Series 9 NP900X4C Premium Ultrabook",
+    "HP Spectre XT Pro UltraBook",
+    "HP Envy 6-1180ca 15.6-Inch Sleekbook"
+  ],
+  "searchProduct": "book",
+  "phoneNumber": "9241567",
+  "city": "Bangalore",
+  "address": "212 Bangalore City",
+  "pinCode": "20215"
+}
