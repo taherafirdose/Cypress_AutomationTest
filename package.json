@@ -10,7 +10,7 @@
     "recordDashboardTest": "npm run test --  --record --key 469288da-aedb-44c8-9ac0-3cdef0f4a020 --reporter mochawesome"},
     
 
-  "author": "Tahera Firdose",
+  "author": "Tahera",
   "license": "ISC",
   "devDependencies": {
     "cypress": "^8.3.0",

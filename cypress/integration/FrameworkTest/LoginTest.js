@@ -7,11 +7,7 @@ describe("This is my LoginPage Test", () => {
 
     before(function () {
         cy.visit(Cypress.env("url"));
-        // runs once before all tests in the block
-        cy.fixture('example.json').then(function (data) {
-            testdata = data
-            return testdata
-        })
+        
     })
 
     it("LoginPage Test", () => {
